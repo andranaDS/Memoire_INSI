@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}Page de prédiction{% endblock %}
 {% block content %}
-  <h1>Resultat:</h1>
+  <h3>Resultat mensuel pour la région d'Analamanga</h3>
   <table class="table table-dark">
     <thead>
       <tr>
         <th scope="col"></th>
         <th scope="col">Mois cible</th>
         <th scope="col">Prédiction de nombre de demandes</th>
-        <th scope="col">Prédiction de de puissance d'enegie requise(KWh)</th>
+        <th scope="col">Prédiction de la puissance d'enegie requise(GW)</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <th scope="row"></th>
-        <td>{{session['month']}}</td>
+        <td><strong>{{session['month']}}</strong></td>
         <td><strong>{{results_dmd}}</strong> demandes</td>
-        <td><strong>{{results_egy}}</strong> KWh</td>
+        <td><strong>{{results_egy}}</strong> GW</td>
       </tr>
     </tbody>
   </table>

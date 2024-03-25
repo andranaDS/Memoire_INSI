@@ -57,4 +57,4 @@ def forecast(model, target_date):
     # Utiliser le modèle pour faire des prédictions
     forecast = model.forecast(steps=steps)
 
-    return int(forecast.iloc[-1])
+    return forecast.iloc[-1]
