@@ -8,8 +8,8 @@ import pickle
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'my-hard-secret-key'
 
-model_dmd = pickle.load(open('models/demande_fit.pkl', 'rb'))
-model_egy = pickle.load(open('models/consommation_fit.pkl', 'rb'))
+model_dmd = pickle.load(open('models/model_tot_nb_dmd_sarimax_fit.pkl', 'rb'))
+model_egy = pickle.load(open('models/model_tot_energy_sarimax_fit.pkl', 'rb'))
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -38,7 +38,8 @@ def index():
 @app.route("/prediction")
 def prediction():
     results_dmd = forecast(model_dmd, session['date'])
-    results_egy = forecast(model_egy, session['date'])
+    results_egy = forecast(model_egy, session['date']) * 1_000  # Pour avoir l'unité en MW
+    results_egy = f"{results_egy:.2f}"
     return render_template('prediction.html', results_dmd=int(results_dmd), results_egy=results_egy)
 
 
